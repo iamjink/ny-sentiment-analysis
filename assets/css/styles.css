@@ -283,6 +283,12 @@ a:active {
 		margin-top: 15% !important;
 	}
 
+	#nytBox,
+	#senBox,
+	#gifBox {
+		font-size: 2vw;
+	}
+
 	#button-bar {
 		width: 100%;
 		height: auto;
