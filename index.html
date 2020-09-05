@@ -1,110 +1,139 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://code.jquery.com/jquery-3.5.1.js"
-        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-    <!-- google fonts -->
-    <link
-        href="https://fonts.googleapis.com/css?family=Muli:200,200i,300,300i,400,400i,500,600,700,800,900&display=swap"
-        rel="stylesheet">
-    <!-- CSS -->
-    <link rel="stylesheet" href="assets/css/styles.css">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script>
-        document.getElementsByTagName("html")[0].className += " js";
-    </script>
-    <title>NYT Sentiment Analysis</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+    crossorigin="anonymous"></script>
+  <!-- google fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Muli:200,200i,300,300i,400,400i,500,600,700,800,900&display=swap"
+    rel="stylesheet">
+  <!-- CSS -->
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script>
+    document.getElementsByTagName("html")[0].className += " js";
+  </script>
+  <title>NYT Sentiment Analysis</title>
 </head>
 
 <body>
-    <div class="no-gutters" id="container">
-        <div class="row">
+  <header class="cd-main-header js-cd-main-header">
+    <div class="cd-logo-wrapper">
 
-            <!-- button sidebar -->
-            <div class="col">
-                <div class="sidebar">
-                    <div id="button-bar">
-                        <!-- buttons will appear here dynamically -->
-                    </div>
+    </div>
+
+    <div class="cd-search js-cd-search">
+      <li class="cd-side__label"><span>Choose a Topic Category</span></li>
+    </div>
+
+    <button class="reset cd-nav-trigger js-cd-nav-trigger" aria-label="Toggle menu"><span></span></button>
+
+    <ul class="cd-nav__list js-cd-nav__list">
+
+      <li class="cd-nav__item cd-nav__item--has-children cd-nav__item--account js-cd-item--has-children">
+
+      </li>
+    </ul>
+  </header> <!-- .cd-main-header -->
+
+  <main class="cd-main-content">
+    <nav class="cd-side-nav js-cd-side-nav">
+      <ul class="cd-side__list js-cd-side__list">
+        <li class="cd-side__item cd-side__item--has-children cd-side__item--overview js-cd-item--has-children">
+          <ul class="cd-side__list js-cd-side__list" id="button-bar">
+            <li class="cd-side__btn"><button class="reset" href="#0">+ Button</button></li>
+          </ul>
+        </li>
+        <li
+          class="cd-side__item cd-side__item--has-children cd-side__item--notifications cd-side__item--selected js-cd-item--has-children">
+        </li>
+        <li class="cd-side__item cd-side__item--has-children cd-side__item--comments js-cd-item--has-children">
+        </li>
+      </ul>
+    </nav>
+
+    <div class="cd-content-wrapper">
+      <div class="text-component text-center">
+        <div class="col-9" id="resultDiv">
+            <!-- title row -->
+            <div class="container">
+              <div class="row" id="title">
+                <div class="col-sm">
+                  <img id="titleLogo" src="assets/images/new-york-times-logo-png-transparent.png">
+                  <P>SENTIMENT ANALYSIS</P>
                 </div>
+              </div>
             </div>
 
-            <!-- results div -->
-            <div class="col-9" id="resultDiv">
-                <div class="container-fluid">
-                    <!-- title row -->
-                    <div class="container">
-                        <div class="row" id="title">
-                            <div class="col-sm">
-                                <img id="titleLogo" src="assets/images/new-york-times-logo-png-transparent.png">
-                                <P>SENTIMENT ANALYSIS</P>
-                            </div>
-                        </div>
-                    </div>
+            <!-- categories div -->
+            <div class="container">
+              <div class="row" id="category-box">
+                <div class="col-sm" id="result-col">
+                  <p id="nTitle">NYT ARTICLE</p>
+                  <div class="results-box" id="dynNYT">
 
-                    <!-- categories div -->
-                    <div class="container">
-                        <div class="row" id="category-box">
-                            <div class="col-sm" id="result-col">
-                                <p id="nTitle">NYT ARTICLE</p>
-                                <div class="results-box" id="dynNYT">
-
-                                </div>
-                            </div>
-                            <div class="col-sm" id="result-col">
-                                <p id="sAnalysis">SENTIMENT ANALYSIS</p>
-                                <div class="results-box" id="senNYT">
-
-                                </div>
-                            </div>
-                            <div class="col-sm" id="result-col">
-                                <p id="giphy">GIPHY</p>
-                                <div class="results-box" id="gifNYT">
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- welcome text -->
-                    <div class="row" id="results-box">
-                        <div class="col-md-12">
-                            <div id="welcome">
-                                <p>Choose a topic and see how NYT Feels!</p>
-                            </div>
-                        </div>
-                    </div> <!-- footer -->
-                    <div class="footer"> DJMJ Design © 2020</div>
+                  </div>
                 </div>
+                <div class="col-sm" id="result-col">
+                  <p id="sAnalysis">SENTIMENT ANALYSIS</p>
+                  <div class="results-box" id="senNYT">
+
+                  </div>
+                </div>
+                <div class="col-sm" id="result-col">
+                  <p id="giphy">GIPHY</p>
+                  <div class="results-box" id="gifNYT">
+
+                  </div>
+                </div>
+              </div>
             </div>
+
+            <!-- welcome text -->
+            <div class="row" id="results-box">
+              <div class="col-md-12">
+                <div id="welcome">
+                  <p>Choose a topic from the menu and see how NYT Feels!</p>
+                </div>
+              </div>
+            </div> <!-- footer -->
+            <div class="footer"> DJMJ Design © 2020</div>
         </div>
 
-    </div>
 
-    </div>
 
-    <!-- Optional JavaScript -->
-    <!-- .cd-main-content -->
-    <script src="assets/javascript/util.js"></script> <!-- util functions included in the CodyHouse framework -->
-    <script src="assets/javascript/menu-aim.js"></script>
-    <script src="assets/javascript/main.js"></script>
-    <!-- jQuery, Popper, Boostrap Javascript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-    </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
-    </script>
-    <script src="assets/javascript/app.js" type="text/javascript"></script>
 
+
+
+
+      </div>
+    </div> <!-- .content-wrapper -->
+  </main> <!-- .cd-main-content -->
+
+  <!-- results div -->
+
+
+  <!-- Optional JavaScript -->
+  <!-- .cd-main-content -->
+  <!-- jQuery, Popper, Boostrap Javascript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+  </script>
+  <script src="assets/js/app.js" type="text/javascript"></script>
+  <script src="assets/js/util.js"></script> <!-- util functions included in the CodyHouse framework -->
+  <script src="assets/js/menu-aim.js"></script>
+  <script src="assets/js/main.js"></script>
 </body>
 
 </html>
